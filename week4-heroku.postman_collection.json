@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "9d89c1e7-341d-4d32-afb0-64ec212616be",
+		"name": "week4-heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20426502"
+	},
+	"item": [
+		{
+			"name": "獲得使用者資料",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pacific-brook-09609.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"pacific-brook-09609",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單一貼文",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://pacific-brook-09609.herokuapp.com/post/628e3a671b64a2fcd2659073",
+					"protocol": "https",
+					"host": [
+						"pacific-brook-09609",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"post",
+						"628e3a671b64a2fcd2659073"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯單一貼文",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"edit Post\",\r\n    \"image\": \"aPicture\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pacific-brook-09609.herokuapp.com/post/628f8f54cae12868cc22a279",
+					"protocol": "https",
+					"host": [
+						"pacific-brook-09609",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"post",
+						"628f8f54cae12868cc22a279"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "獲得所有貼文",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://pacific-brook-09609.herokuapp.com/posts?sort=desc",
+					"protocol": "https",
+					"host": [
+						"pacific-brook-09609",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增貼文",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"helloffff\",\r\n    \"image\": \"newPicture\",\r\n    \"user\": \"628e1b950ee90e6531e32a2d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pacific-brook-09609.herokuapp.com/post",
+					"protocol": "https",
+					"host": [
+						"pacific-brook-09609",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增使用者資料",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"wanwan@gmail.com\",\r\n    \"password\": \"ssssewe\",\r\n    \"photo\": \"sfafdsfds\",\r\n    \"nickname\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://pacific-brook-09609.herokuapp.com/users",
+					"protocol": "https",
+					"host": [
+						"pacific-brook-09609",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

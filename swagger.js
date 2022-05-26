@@ -5,7 +5,7 @@ const doc = {
     "title": "week4",
     "description": "node 直播班第四週 api"
   },
-  host: 'localhost:3000',
+  host: 'pacific-brook-09609.herokuapp.com',
   schemes: ['http', 'https'],
   definitions: {
     getUsers: {
