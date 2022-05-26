@@ -1,0 +1,396 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "week4",
+    "description": "node 直播班第四週 api"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/users/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "取得全部使用者 id、暱稱",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Users successfully obtained.",
+            "schema": {
+              "$ref": "#/definitions/getUsers"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "新增使用者",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "資料格式",
+            "type": "object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "youremail@email.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "yourpassword"
+                },
+                "photo": {
+                  "type": "string",
+                  "example": "photoUrl"
+                },
+                "nickname": {
+                  "type": "string",
+                  "example": "暱稱"
+                }
+              },
+              "required": [
+                "email",
+                "password",
+                "photo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully registered.",
+            "schema": {
+              "$ref": "#/definitions/addUser"
+            }
+          },
+          "400": {
+            "description": "Somthing wrong...",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/posts": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "description": "取得所有貼文",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "name": "q",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Posts successfully obtained.",
+            "schema": {
+              "$ref": "#/definitions/getPosts"
+            }
+          }
+        }
+      }
+    },
+    "/post": {
+      "post": {
+        "tags": [
+          "Posts"
+        ],
+        "description": "新增單篇貼文",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "資料格式",
+            "type": "object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "example": "youremail@email.com"
+                },
+                "image": {
+                  "type": "string",
+                  "example": "photoUrl"
+                },
+                "user": {
+                  "type": "string",
+                  "example": "userId"
+                }
+              },
+              "required": [
+                "content",
+                "user"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post successfully created.",
+            "schema": {
+              "$ref": "#/definitions/updatePost"
+            }
+          },
+          "400": {
+            "description": "Something wrong...",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/post/{postId}": {
+      "delete": {
+        "tags": [
+          "Posts"
+        ],
+        "description": "刪除單篇貼文",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully delete.",
+            "schema": {
+              "$ref": "#/definitions/getPosts"
+            }
+          },
+          "400": {
+            "description": "Something wrong...",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Posts"
+        ],
+        "description": "編輯單篇貼文",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully edit the post.",
+            "schema": {
+              "$ref": "#/definitions/updatePost"
+            }
+          },
+          "400": {
+            "description": "Something wrong...",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "getUsers": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "success"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "example": "userId"
+              },
+              "nickname": {
+                "type": "string",
+                "example": "暱稱"
+              }
+            }
+          }
+        }
+      }
+    },
+    "addUser": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "success"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "youremail@email.com"
+            },
+            "password": {
+              "type": "string",
+              "example": "yourPassword"
+            },
+            "photo": {
+              "type": "string",
+              "example": "url"
+            },
+            "nickname": {
+              "type": "string",
+              "example": "暱稱"
+            },
+            "gender": {
+              "type": "string",
+              "example": "男性"
+            },
+            "_id": {
+              "type": "string",
+              "example": "userId"
+            },
+            "createdAt": {
+              "type": "string",
+              "example": "2022-05-26T05:54:49.659Z"
+            },
+            "updatedAt": {
+              "type": "string",
+              "example": "2022-05-26T05:54:49.659Z"
+            }
+          }
+        }
+      }
+    },
+    "getPosts": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "success"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "example": "postId"
+              },
+              "content": {
+                "type": "string",
+                "example": "This is content"
+              },
+              "image": {
+                "type": "string",
+                "example": "photoUrl"
+              },
+              "user": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "example": "userId"
+                  },
+                  "photo": {
+                    "type": "string",
+                    "example": "userPhoto"
+                  },
+                  "nickname": {
+                    "type": "string",
+                    "example": "userNicname"
+                  }
+                }
+              },
+              "createAt": {
+                "type": "string",
+                "example": "2022-05-25T14:17:11.890Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "updatePost": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "success"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "string",
+              "example": "This is post content."
+            },
+            "image": {
+              "type": "string",
+              "example": "imageUrl"
+            },
+            "user": {
+              "type": "string",
+              "example": "userId"
+            },
+            "_id": {
+              "type": "string",
+              "example": "postId"
+            },
+            "createAt": {
+              "type": "string",
+              "example": "2022-05-26T12:53:01.478Z"
+            }
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "error"
+        },
+        "message": {
+          "type": "string",
+          "example": "errorMessage"
+        }
+      }
+    }
+  }
+}
